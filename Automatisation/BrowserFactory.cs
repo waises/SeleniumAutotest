@@ -13,7 +13,7 @@ namespace Automatisation
     public class BroesrFactory
     {
         private static IWebDriver webDriver;
-
+        private static ChromeOptions chromeOptions;
 
         private static string baseUrl = "steam.com";
         private static string browser = "";
@@ -25,21 +25,15 @@ namespace Automatisation
             {
                 case "Chrome":
                     webDriver = new ChromeDriver();
-                    ChromeOptions options = new ChromeOptions();
                     break;
                 case "Firefox":
                     webDriver = new FirefoxDriver();
-                    FirefoxOptions options = new FirefoxOptions();
                     break;
-                default:
-                    webDriver= new ChromeDriver();
-                    ChromeOptions options = new ChromeOptions();
-                    break;
-
             }
+            
             webDriver.Manage().Window.Maximize();
+            chromeOptions = new ChromeOptions();
             chromeOptions.AddArgument(@"--incognito");
-
         }
     }
 }
