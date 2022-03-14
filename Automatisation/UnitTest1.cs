@@ -10,26 +10,24 @@ namespace Automatisation
     public class Tests : BrowserFactory
     {
         IWebDriver driver ;//ÔÓ·Ì˚È
-       // ChromeOptions options;
+        ChromeOptions options;
 
         [SetUp]
         public void Setup()
         {
-            // options = new ChromeOptions();
-            //  options.AddArgument(@"--incognito");
-
-            //                              initialize of driver(Singleton)
             driver = new ChromeDriver();
+            options = new ChromeOptions();
+            options.AddArgument(@"--incognito");
+            options.AddArgument(@"--lang=es");
         }
 
         [Test]
         public void Test1()
 
         {
-            //                                      
-            //                                      Creating options        
-
-            //                                          Open page
+            MainPage mainPage = new MainPage();
+          
+ 
             driver.Navigate().GoToUrl("https://store.steampowered.com/");
             WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
             IWebElement SearchResult = wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.XPath("//a[@class='menuitem' and contains(@href, 'about')]")));
@@ -45,9 +43,6 @@ namespace Automatisation
             IWebElement Shop = wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.XPath("//a[@class= 'menuitem supernav' and contains(text(), 'Ã¿√¿«»Õ')]")));
             Shop.Click();
             
-            //options.AddArgument(@"--lang engl");
-            // driver = new ChromeDriver(options);
-            // driver.Manage().Window.Maximize();
 
 
         }
@@ -55,11 +50,6 @@ namespace Automatisation
         public void Test2()
 
         {
-
-            //                                      
-            //                                      Creating options        
-
-            //                                          Open page
 
 
             driver.Navigate().GoToUrl("https://store.steampowered.com/");
