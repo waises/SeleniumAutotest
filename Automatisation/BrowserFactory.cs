@@ -10,30 +10,19 @@ using Newtonsoft.Json;
 
 namespace Automatisation
 {
-    public class BroesrFactory
+    public class BrowserFactory 
     {
         private static IWebDriver webDriver;
-        private static ChromeOptions chromeOptions;
+        private static IOptions options;
 
         private static string baseUrl = "steam.com";
         private static string browser = "";
-        public static IWebDriver WebDriverOptions;
         
         public static void Init()
         {
-            switch (browser)
-            {
-                case "Chrome":
-                    webDriver = new ChromeDriver();
-                    break;
-                case "Firefox":
-                    webDriver = new FirefoxDriver();
-                    break;
-            }
             
-            webDriver.Manage().Window.Maximize();
-            chromeOptions = new ChromeOptions();
-            chromeOptions.AddArgument(@"--incognito");
+            //webDriver.Manage().Window.Maximize();
+            //options.AddArgument(@"--incognito");
         }
     }
 }
