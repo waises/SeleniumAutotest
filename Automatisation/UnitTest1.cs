@@ -3,7 +3,7 @@ using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium;
 using System;
 using OpenQA.Selenium.Support.UI;
-using SeleniumExtras.WaitHelpers;
+using OpenQA.Selenium.Interactions;
 
 namespace Automatisation
 {
@@ -36,42 +36,47 @@ namespace Automatisation
 
             SearchResult.Click();
 
-             object SearchResult_about = wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.XPath("//div[@class= 'online_stat']/following-sibling::text()[1]")));
-            string text = SearchResult_about.ToString();
-            Console.WriteLine(text);
-            //IWebElement SearchResult_about = driver.(By.XPath("//div[@class= 'online_stat']/following-sibling::text()"));
-            //wait.Until(ExpectedConditions.ElementIsVisible(By.XPath("//div[@class= 'online_stat']/following-sibling::text()")));
-            //string text =  SearchResult_about.Text;
-            //Assert.IsTrue(text == "O steam", $"{text}");
+         //   IWebElement SearchResult_online = wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.XPath("//div[@class= 'online_stat']/following-sibling::text()[1]")));
+          //  IWebElement SearchResult_ingame = wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.XPath("//div[@class= 'online_stat']/following-sibling::text()[2]")));
+
+          //  Assert.IsTrue(Convert.ToInt32(SearchResult_online) < Convert.ToInt32(SearchResult_ingame), "Игроков в игре больше или столько же чем онлайн");
+
+
+            IWebElement Shop = wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.XPath("//a[@class= 'menuitem supernav' and contains(text(), 'МАГАЗИН')]")));
+            Shop.Click();
+            
             //options.AddArgument(@"--lang engl");
             // driver = new ChromeDriver(options);
             // driver.Manage().Window.Maximize();
 
-            //  driver.Navigate().GoToUrl("https://store.steampowered.com/");
-            //  Assert.IsTrue(driver.Title=="Добро пожаловать в Steam", $"{driver.Title}");
+
+        }
+        [Test]
+        public void Test2()
+
+        {
+
+            //                                      
+            //                                      Creating options        
+
+            //                                          Open page
 
 
-            //  IWebElement about_bttn = driver.FindElement(By.XPath("//a[@class='menuitem' and contains(@href, 'about')]"));
-            //  string about_text = about_bttn.Text;
+            driver.Navigate().GoToUrl("https://store.steampowered.com/");
 
-            //Assert.IsTrue(about_text == "О STEAM", $"problem with {about_bttn}");
-            // about_bttn.Click();
-
-            // IWebElement online_players = driver.FindElement(By.XPath("//div[@class= 'online_stat']/following-sibling::text()[1]"));
-            // string online_text = online_players.Text;
-            // Assert.IsTrue(online_text == "2141241",$"{online_text}");
-
-
-
+            WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
+            Actions mouseAction = new Actions(driver);
+            IWebElement SearchResult_1 = wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.XPath("//div[@class = 'tab  flyout_tab']//*")));
+            mouseAction.MoveToElement(SearchResult_1).Perform();
+            //action.Release(elem);
+            IWebElement SearchResult = wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementToBeClickable(By.XPath("//a[@class='popup_menu_item' and contains(@href, 'topsellers')]")));
+            
+            SearchResult.Click();
         }
         [TearDown]
         public void AfterTestSuit()
         {
            driver.Close();
         }
-    }
-    class Singletom
-    {
-
     }
 }
